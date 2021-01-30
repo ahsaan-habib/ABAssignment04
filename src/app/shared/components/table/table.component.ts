@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DistrictInfo} from '../../interfaces';
 
 @Component({
@@ -9,10 +9,15 @@ import {DistrictInfo} from '../../interfaces';
 export class TableComponent implements OnInit {
 
   @Input() data!: DistrictInfo[];
+  @Output() rowRemoved = new EventEmitter<number>();
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+  public deleteRow(index: number): void{
+    this.data.splice(index, 1);
+    this.rowRemoved.emit(index);
   }
 
 }

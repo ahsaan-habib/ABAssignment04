@@ -12,6 +12,7 @@ export class DistrictComponent implements OnInit {
   // public districtInfo: DistrictInfo[] = []
 
   public districtInfo: DistrictInfo[] = [];
+  public numberOfDistrict = 0;
 
   constructor(private districtService: DistrictService) {
     this.setDistrictList();
@@ -19,7 +20,8 @@ export class DistrictComponent implements OnInit {
   private  setDistrictList(): void{
     this.districtService.getStudentList().then(res => {
       if (res.serviceResult && res.serviceResult.success === true){
-        this.districtInfo = res.data;
+        this.districtInfo = this.getRectifiedDistrict(res.data);
+        this.setNumberOfDistrict(this.districtInfo);
       }
       else {
         console.log('Error', res);
@@ -28,6 +30,21 @@ export class DistrictComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  // get rectified districts
+  private getRectifiedDistrict(districtList: DistrictInfo[]): DistrictInfo[]{
+    for (const dist of districtList){
+      dist.density = Math.floor(dist.population / dist.areaSqKm);
+    }
+    return districtList;
+  }
+
+  private setNumberOfDistrict(arr: DistrictInfo[]): void{
+    this.numberOfDistrict = arr.length;
+  }
+  public reCount(event: number): void{
+    this.numberOfDistrict = this.districtInfo.length;
   }
 
 }

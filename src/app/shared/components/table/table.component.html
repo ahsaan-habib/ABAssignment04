@@ -1,20 +1,25 @@
 <table class="table table-striped table-hover">
   <thead>
-  <tr>
-    <th scope="col">SL</th>
-    <th scope="col">Name</th>
-    <th scope="col">Division</th>
-    <th scope="col">Population</th>
-    <th scope="col">Area (sq.km)</th>
-  </tr>
+    <tr class="bg-success text-white">
+      <th></th>
+      <th scope="col">SL</th>
+      <th scope="col">Name</th>
+      <th scope="col">Division</th>
+      <th scope="col">Population</th>
+      <th scope="col">Area (sq.km)</th>
+      <th scope="col">Density(sq.km)</th>
+    </tr>
   </thead>
+
   <tbody>
-  <tr *ngFor="let info of data">
-    <td>{{data.indexOf(info)+1}}</td>
-    <td>{{info.name}}</td>
-    <td>{{info.division}}</td>
-    <td>{{info.population}}</td>
-    <td>{{info.areaSqKm}}</td>
-  </tr>
+    <tr *ngFor="let info of data; index as sl" >
+      <td class="tdDelete"><i class="fas fa-minus-circle" (click)="deleteRow(sl)"></i></td>
+      <td>{{sl+1}}</td>
+      <td>{{info.name}}</td>
+      <td>{{info.division}}</td>
+      <td>{{info.population}}</td>
+      <td>{{info.areaSqKm}}</td>
+      <td>{{info.density}}</td>
+    </tr>
   </tbody>
 </table>
