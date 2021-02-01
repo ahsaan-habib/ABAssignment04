@@ -14,6 +14,7 @@ import { DataboxComponent } from './shared/components/databox/databox.component'
 import {DistrictService, HttpService, StudentService, TeacherService, UrlService} from './common/services';
 import { HttpClientModule } from '@angular/common/http';
 import { TableComponent } from './shared/components/table/table.component';
+import { BdLocalPipe } from './shared/pipes/bd-local.pipe';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { TableComponent } from './shared/components/table/table.component';
     CardComponent,
     DataboxComponent,
     TableComponent,
+    BdLocalPipe,
   ],
   imports: [
     BrowserModule,

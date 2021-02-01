@@ -2,8 +2,14 @@
   <div class="container text-center my-4 pb-4">
     <div class="display-4 mb-2">District List of Bangladesh ({{numberOfDistrict}})</div>
   </div>
-
   <div class="container mt-4">
     <app-table [data]="districtInfo" (rowRemoved)="reCount($event)"></app-table>
+  </div>
+
+  <div class="container text-center my-4 pb-4">
+    <div class="display-4 mb-2">Deleted District List of Bangladesh ({{numberOfDeletedDistrict}})</div>
+  </div>
+  <div class="container mt-4">
+    <app-table [data]="deleteDistrictInfo" (deletedList)="deleteDistrictList($value)" ></app-table>
   </div>
 </div>

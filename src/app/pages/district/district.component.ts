@@ -9,13 +9,19 @@ import {DistrictService} from '../../common/services';
 })
 export class DistrictComponent implements OnInit {
 
-  // public districtInfo: DistrictInfo[] = []
-
   public districtInfo: DistrictInfo[] = [];
+  public deleteDistrictInfo : DistrictInfo[] = [];
   public numberOfDistrict = 0;
+  public numberOfDeletedDistrict = 0;
+
+  public deleteDistrictList(value : any): void{
+    this.deleteDistrictInfo = value;
+    console.log(value);
+  }
 
   constructor(private districtService: DistrictService) {
     this.setDistrictList();
+
   }
   private  setDistrictList(): void{
     this.districtService.getStudentList().then(res => {
