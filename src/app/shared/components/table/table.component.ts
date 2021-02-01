@@ -10,8 +10,8 @@ import {DistrictInfo} from '../../interfaces';
 export class TableComponent implements OnInit {
 
   @Input() data!: DistrictInfo[];
-  @Input() showAction!: true;
-  @Input() headerClass!: '';
+  @Input() showAction!: boolean;
+  @Input() headerClass!: string;
   @Output() rowRemoved = new EventEmitter<number>();
 
   constructor() { }
