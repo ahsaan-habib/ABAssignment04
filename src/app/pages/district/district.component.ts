@@ -14,10 +14,6 @@ export class DistrictComponent implements OnInit {
   public numberOfDistrict = 0;
   public numberOfDeletedDistrict = 0;
 
-  public deleteDistrictList(value : any): void{
-    this.deleteDistrictInfo = value;
-    console.log(value);
-  }
 
   constructor(private districtService: DistrictService) {
     this.setDistrictList();
@@ -50,7 +46,13 @@ export class DistrictComponent implements OnInit {
     this.numberOfDistrict = arr.length;
   }
   public reCount(event: number): void{
+    this.deleteDistrictInfo.push(this.districtInfo[event])
+    this.numberOfDeletedDistrict = this.deleteDistrictInfo.length;
+
+    this.districtInfo.splice(event, 1);
     this.numberOfDistrict = this.districtInfo.length;
+
+
   }
 
 }
