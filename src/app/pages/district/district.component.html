@@ -19,6 +19,7 @@
     <div class="container mt-4">
       <app-table
         [data]="deleteDistrictInfo"
+        (rowRestore)="restoreFunc($event)"
         [showAction]="false"
         [headerClass]="'bg-danger text-white'"
       ></app-table>

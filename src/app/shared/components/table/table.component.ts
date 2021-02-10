@@ -13,7 +13,7 @@ export class TableComponent implements OnInit {
   @Input() showAction!: boolean;
   @Input() headerClass!: string;
   @Output() rowRemoved = new EventEmitter<number>();
-
+  @Output() rowRestore = new EventEmitter<number>();
   constructor() { }
 
   ngOnInit(): void {
@@ -21,6 +21,10 @@ export class TableComponent implements OnInit {
   public deleteRow(index: number): void{
     // this.data.splice(index, 1);
     this.rowRemoved.emit(index);
+  }
+  public restoreRow(index: number): void{
+    // this.data.splice(index, 1);
+    this.rowRestore.emit(index);
   }
 
 }

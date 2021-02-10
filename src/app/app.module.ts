@@ -21,6 +21,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {FormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
 import {DialogService} from "./common/services/dialog.service";
+import { SelectComponent } from './shared/components/select/select.component';
+import { FormComponent } from './shared/components/form/form.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import {DialogService} from "./common/services/dialog.service";
     TableComponent,
     BdLocalPipe,
     DialogComponent,
+    SelectComponent,
+    FormComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DistrictInfo} from '../../shared/interfaces';
 import {DistrictService} from '../../common/services';
-import {MatDialog} from "@angular/material/dialog";
-import {DialogComponent} from "../../shared/components/dialog/dialog.component";
 import {DialogService} from "../../common/services/dialog.service";
 
 @Component({
@@ -38,6 +36,7 @@ export class DistrictComponent implements OnInit {
   }
 
   // get rectified districts
+
   private getRectifiedDistrict(districtList: DistrictInfo[]): DistrictInfo[]{
     for (const dist of districtList){
       dist.density = Math.floor(dist.population / dist.areaSqKm);
@@ -61,7 +60,7 @@ export class DistrictComponent implements OnInit {
       }
 
     );
-
+    // //call matDialog in constructor first
     // const dialogRef = this.dialog.open(DialogComponent,{
     //   data: {
     //     title: 'Delete Confirmation!',
@@ -77,8 +76,30 @@ export class DistrictComponent implements OnInit {
 
   }
 
+  public restoreFunc(event: number): void {
+    this.dialogService.setDialogData(
+      {
+        title: 'Restore Confirmation!',
+        body: 'Are you sure to restore data?'
+      }
+    ).then(data => {
+        if (data === 'yes') {
+          this.restoreTableRowByIndex(event);
+        }
+      }
+    );
+  }
+
+  restoreTableRowByIndex(index: number){
+    this.districtInfo.push(this.deleteDistrictInfo[index]);
+    this.numberOfDistrict = this.districtInfo.length;
+
+    this.deleteDistrictInfo.splice(index, 1);
+    this.numberOfDeletedDistrict = this.deleteDistrictInfo.length;
+  }
+
   deleteTableRowByIndex(index: number){
-    this.deleteDistrictInfo.push(this.districtInfo[index])
+    this.deleteDistrictInfo.push(this.districtInfo[index]);
     this.numberOfDeletedDistrict = this.deleteDistrictInfo.length;
 
     this.districtInfo.splice(index, 1);
