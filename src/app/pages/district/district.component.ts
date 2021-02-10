@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {DistrictInfo} from '../../shared/interfaces';
 import {DistrictService} from '../../common/services';
+import {MatDialog} from "@angular/material/dialog";
+import {DialogComponent} from "../../shared/components/dialog/dialog.component";
+import {DialogService} from "../../common/services/dialog.service";
 
 @Component({
   selector: 'app-district',
@@ -15,7 +18,7 @@ export class DistrictComponent implements OnInit {
   public numberOfDeletedDistrict = 0;
 
 
-  constructor(private districtService: DistrictService) {
+  constructor(private districtService: DistrictService, private dialogService: DialogService) {
     this.setDistrictList();
 
   }
@@ -46,13 +49,41 @@ export class DistrictComponent implements OnInit {
     this.numberOfDistrict = arr.length;
   }
   public reCount(event: number): void{
-    this.deleteDistrictInfo.push(this.districtInfo[event])
-    this.numberOfDeletedDistrict = this.deleteDistrictInfo.length;
+    this.dialogService.setDialogData(
+      {
+      title: 'Delete Confirmation!',
+      body: 'Are you sure to delete?'
+    }
+    ).then(data => {
+        if (data === 'yes'){
+          this.deleteTableRowByIndex(event);
+        }
+      }
 
-    this.districtInfo.splice(event, 1);
-    this.numberOfDistrict = this.districtInfo.length;
+    );
 
+    // const dialogRef = this.dialog.open(DialogComponent,{
+    //   data: {
+    //     title: 'Delete Confirmation!',
+    //     body: 'Are you sure to delete?'
+    //   }
+    // });
+    //
+    // dialogRef.afterClosed().subscribe(res => {
+    //   if(res === 'yes'){
+    //     this.deleteTableRowByIndex(event);
+    //   }
+    // });
 
   }
+
+  deleteTableRowByIndex(index: number){
+    this.deleteDistrictInfo.push(this.districtInfo[index])
+    this.numberOfDeletedDistrict = this.deleteDistrictInfo.length;
+
+    this.districtInfo.splice(index, 1);
+    this.numberOfDistrict = this.districtInfo.length;
+  }
+
 
 }

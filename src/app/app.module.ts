@@ -15,6 +15,12 @@ import {DistrictService, HttpService, StudentService, TeacherService, UrlService
 import { HttpClientModule } from '@angular/common/http';
 import { TableComponent } from './shared/components/table/table.component';
 import { BdLocalPipe } from './shared/pipes/bd-local.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogComponent } from './shared/components/dialog/dialog.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {FormsModule} from "@angular/forms";
+import {MatDialogModule} from "@angular/material/dialog";
+import {DialogService} from "./common/services/dialog.service";
 
 @NgModule({
   declarations: [
@@ -29,13 +35,18 @@ import { BdLocalPipe } from './shared/pipes/bd-local.pipe';
     DataboxComponent,
     TableComponent,
     BdLocalPipe,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatDialogModule
   ],
-  providers: [HttpService, UrlService, StudentService, TeacherService, DistrictService],
+  providers: [HttpService, UrlService, StudentService, TeacherService, DistrictService, DialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

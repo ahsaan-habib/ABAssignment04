@@ -1,7 +1,7 @@
 <table class="table table-striped table-hover">
   <thead>
     <tr [ngClass]="headerClass">
-      <th *ngIf="showAction"></th>
+      <th></th>
       <th scope="col">SL</th>
       <th scope="col">Name</th>
       <th scope="col">Division</th>
@@ -13,7 +13,8 @@
 
   <tbody>
     <tr *ngFor="let info of data; index as sl" >
-      <td *ngIf="showAction" class="tdDelete"><i class="fas fa-minus-circle" (click)="deleteRow(sl)"></i></td>
+      <td *ngIf="showAction else elseBlock" class="tdDelete text-danger"><i class="fas fa-minus-circle" (click)="deleteRow(sl)"></i></td>
+      <ng-template #elseBlock><td class="tdRestore text-success"><i class="fas fa-plus-circle" (click)="deleteRow(sl)"></i></td></ng-template>
       <td>{{sl+1}}</td>
       <td>{{info.name}}</td>
       <td>{{info.division}}</td>
