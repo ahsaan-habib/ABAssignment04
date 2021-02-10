@@ -23,6 +23,8 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {DialogService} from "./common/services/dialog.service";
 import { SelectComponent } from './shared/components/select/select.component';
 import { FormComponent } from './shared/components/form/form.component';
+import {MatOptionModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { FormComponent } from './shared/components/form/form.component';
     BrowserAnimationsModule,
     MatFormFieldModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   providers: [HttpService, UrlService, StudentService, TeacherService, DistrictService, DialogService],
   bootstrap: [AppComponent]

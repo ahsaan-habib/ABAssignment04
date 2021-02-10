@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import { SelectData } from '../../interfaces';
 
 @Component({
   selector: 'app-select',
@@ -11,5 +12,13 @@ export class SelectComponent implements OnInit {
 
   ngOnInit(): void {
   }
+    @Input() labelData!: string ;
+    @Input() data: SelectData[] = [];
+    @Input() selectedData: string | undefined;
+
+
+    selectItem(event: Event) {
+      this.selectedData = (event.target as HTMLSelectElement).value;
+    }
 
 }
