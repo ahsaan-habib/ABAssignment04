@@ -47,15 +47,16 @@ export class DistrictComponent implements OnInit {
   private setNumberOfDistrict(arr: DistrictInfo[]): void{
     this.numberOfDistrict = arr.length;
   }
-  public reCount(event: number): void{
+  public reCount(index: number): void{
     this.dialogService.setDialogData(
       {
       title: 'Delete Confirmation!',
-      body: 'Are you sure to delete?'
+      body: 'Are you sure to delete?',
+      yesBtnClass: 'btn-danger'
     }
     ).then(data => {
         if (data === 'yes'){
-          this.deleteTableRowByIndex(event);
+          this.deleteTableRowByIndex(index);
         }
       }
 
@@ -76,15 +77,16 @@ export class DistrictComponent implements OnInit {
 
   }
 
-  public restoreFunc(event: number): void {
+  public restoreFunc(index: number): void {
     this.dialogService.setDialogData(
       {
         title: 'Restore Confirmation!',
-        body: 'Are you sure to restore data?'
+        body: 'Are you sure to restore data?',
+        yesBtnClass: 'btn-success'
       }
     ).then(data => {
         if (data === 'yes') {
-          this.restoreTableRowByIndex(event);
+          this.restoreTableRowByIndex(index);
         }
       }
     );

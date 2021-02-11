@@ -16,7 +16,8 @@ export class DialogService {
         width: '500px',
         data: {
           title: info.title,
-          body: info.body
+          body: info.body,
+          yesBtnClass: info.yesBtnClass
         }
       });
 
