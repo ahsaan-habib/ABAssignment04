@@ -26,6 +26,7 @@ import { FormComponent } from './shared/components/form/form.component';
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {SharedComponentModule} from "./shared-component.module";
+import {UsersService} from "./common/services/users.service";
 
 @NgModule({
   declarations: [

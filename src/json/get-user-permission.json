@@ -1,0 +1,12 @@
+{
+  "serviceResult": {
+    "success": true,
+    "message": "",
+    "messageTechnical": ""
+  },
+  "data": [
+    {
+      "user": "admin"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+In this class we will learn the following in details
+1. Angular LifeCycle Hook
+2. ViewChild()
+3. Template Reference Variable
+4. Lazy loading
+5. Creation and using subscription (Rxjs).

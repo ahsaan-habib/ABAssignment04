@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DistrictInfo} from '../shared/interfaces';
 import {DistrictService} from '../common/services';
 import {DialogService} from "../common/services/dialog.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-district',
@@ -14,7 +15,8 @@ export class DistrictComponent implements OnInit {
   public deleteDistrictInfo : DistrictInfo[] = [];
   public numberOfDistrict = 0;
   public numberOfDeletedDistrict = 0;
-
+  public userAction!: boolean;
+  public userPermission!: Observable<any> ;
 
   constructor(private districtService: DistrictService, private dialogService: DialogService) {
     this.setDistrictList();
@@ -33,6 +35,10 @@ export class DistrictComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userPermission = new Observable(observer => {
+      
+    })
+
   }
 
   // get rectified districts

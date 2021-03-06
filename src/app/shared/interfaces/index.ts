@@ -7,3 +7,5 @@ export {TeacherListRes} from './teacher-list-res';
 export {DistrictInfo} from './district-info';
 export {DistrictListRes} from './district-list-res';
 export {SelectData} from './select-data';
+export {UsersPerm} from './users-perm';
+export {UsersPermRes} from './users-perm-res'
