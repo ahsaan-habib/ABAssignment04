@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {DistrictInfo} from '../../shared/interfaces';
-import {DistrictService} from '../../common/services';
-import {DialogService} from "../../common/services/dialog.service";
+import {DistrictInfo} from '../shared/interfaces';
+import {DistrictService} from '../common/services';
+import {DialogService} from "../common/services/dialog.service";
 
 @Component({
   selector: 'app-district',
