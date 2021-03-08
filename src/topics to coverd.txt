@@ -23,7 +23,7 @@ observable subscribe-
         this.bookService.getBookFromStore().subscribe(books => this.softBooks = books);
       }
     for the demo we are calling the above method  in ngOnInit.
-    nOnInit(){
+    ngOnInit(){
       this.getsoftBooks();
     }
 
