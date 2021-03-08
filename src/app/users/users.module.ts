@@ -3,10 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
-import {DistrictService, HttpService, StudentService, TeacherService, UrlService} from "../common/services";
-import {DialogService} from "../common/services/dialog.service";
-import {UsersService} from "../common/services/users.service";
-import {UserPermission} from "../common/services/user-permission";
+import {UsersService} from '../common/services';
+import {UserPermission} from '../common/services';
 
 
 @NgModule({
@@ -17,7 +15,7 @@ import {UserPermission} from "../common/services/user-permission";
     CommonModule,
     UsersRoutingModule
   ],
-  providers: [UsersService,UserPermission],
+  providers: [UsersService, UserPermission],
 })
 
 export class UsersModule{ }

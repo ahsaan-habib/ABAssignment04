@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {DistrictInfo} from '../shared/interfaces';
 import {DistrictService} from '../common/services';
-import {DialogService} from "../common/services/dialog.service";
-import {UserPermission} from "../common/services/user-permission";
-import {Observable, Subscription} from "rxjs";
+import {DialogService} from '../common/services/dialog.service';
+import {UserPermission} from '../common/services';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-district',
@@ -12,18 +12,20 @@ import {Observable, Subscription} from "rxjs";
 })
 export class DistrictComponent implements OnInit, OnDestroy {
 
-  public districtInfo: DistrictInfo[] = [];
-  public deleteDistrictInfo : DistrictInfo[] = [];
-  public numberOfDistrict = 0;
-  public numberOfDeletedDistrict = 0;
-  public userAction!: boolean;
-
   constructor(private districtService: DistrictService,
               private dialogService: DialogService,
               private userPermService: UserPermission) {
     this.setDistrictList();
 
   }
+
+
+  public districtInfo: DistrictInfo[] = [];
+  public deleteDistrictInfo: DistrictInfo[] = [];
+  public numberOfDistrict = 0;
+  public numberOfDeletedDistrict = 0;
+  public userAction!: boolean;
+  private userPermSubscription!: Subscription;
 
   private  setDistrictList(): void{
     this.districtService.getStudentList().then(res => {
@@ -36,14 +38,12 @@ export class DistrictComponent implements OnInit, OnDestroy {
       }
     });
   }
-  private getUserPerm() {
+  private getUserPerm(): Subscription {
       return this.userPermService.setUserPermission().subscribe(user => {
         this.userAction = user[0].user === 'admin';
-        console.log(user[0].user, 'confirm')
+        console.log(user[0].user, 'confirm');
       });
-    };
-  private userPermSubscription!: Subscription;
-
+    }
 
   ngOnInit(): void {
     this.userPermSubscription = this.getUserPerm();
@@ -112,7 +112,7 @@ export class DistrictComponent implements OnInit, OnDestroy {
     );
   }
 
-  restoreTableRowByIndex(index: number){
+  restoreTableRowByIndex(index: number): void{
     this.districtInfo.push(this.deleteDistrictInfo[index]);
     this.numberOfDistrict = this.districtInfo.length;
 
@@ -120,7 +120,7 @@ export class DistrictComponent implements OnInit, OnDestroy {
     this.numberOfDeletedDistrict = this.deleteDistrictInfo.length;
   }
 
-  deleteTableRowByIndex(index: number){
+  deleteTableRowByIndex(index: number): void{
     this.deleteDistrictInfo.push(this.districtInfo[index]);
     this.numberOfDeletedDistrict = this.deleteDistrictInfo.length;
 

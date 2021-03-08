@@ -8,4 +8,4 @@ export {DistrictInfo} from './district-info';
 export {DistrictListRes} from './district-list-res';
 export {SelectData} from './select-data';
 export {UsersPerm} from './users-perm';
-export {UsersPermRes} from './users-perm-res'
+export {UsersPermRes} from './users-perm-res';

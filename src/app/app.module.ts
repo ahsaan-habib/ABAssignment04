@@ -17,16 +17,15 @@ import { HttpClientModule } from '@angular/common/http';
 // import { BdLocalPipe } from './shared/pipes/bd-local.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogComponent } from './shared/components/dialog/dialog.component';
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {FormsModule} from "@angular/forms";
-import {MatDialogModule} from "@angular/material/dialog";
-import {DialogService} from "./common/services/dialog.service";
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {FormsModule} from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
+import {DialogService} from './common/services/dialog.service';
 import { SelectComponent } from './shared/components/select/select.component';
 import { FormComponent } from './shared/components/form/form.component';
-import {MatOptionModule} from "@angular/material/core";
-import {MatSelectModule} from "@angular/material/select";
-import {SharedComponentModule} from "./shared-component.module";
-import {UsersService} from "./common/services/users.service";
+import {MatOptionModule} from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
+import {SharedComponentModule} from './shared-component.module';
 
 @NgModule({
   declarations: [

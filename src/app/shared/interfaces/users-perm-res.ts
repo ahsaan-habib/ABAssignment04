@@ -1,5 +1,5 @@
 import { ServiceResult } from './service-result';
-import {UsersPerm} from "./users-perm";
+import {UsersPerm} from './users-perm';
 
 export interface UsersPermRes {
   serviceResult: ServiceResult;

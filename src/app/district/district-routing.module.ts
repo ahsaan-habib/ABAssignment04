@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { DistrictComponent } from './district.component';
-import {DAboutComponent} from "./d-about/d-about.component";
-import {AboutComponent} from "../pages/about/about.component";
+import {DAboutComponent} from './d-about/d-about.component';
+import {AboutComponent} from '../pages/about/about.component';
 
 
 const routes: Routes = [

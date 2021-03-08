@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs";
-import {UsersService} from "./users.service";
+import {Observable} from 'rxjs';
+import {UsersService} from './users.service';
 
 @Injectable()
 export class UserPermission{
@@ -10,17 +10,17 @@ export class UserPermission{
 
   public setUserPermission(): Observable<any> {
     let count = 0;
-    const userPerm = new Observable(observer=>{
+    const userPerm = new Observable(observer => {
         let testInterval: any;
 
         this.userService.getUser().then(res => {
           if (res.serviceResult && res.serviceResult.success) {
             const user = res.data;
 
-             testInterval = setInterval(()=>{
+            testInterval = setInterval(() => {
               // @ts-ignore
-              console.log(user[0].user)
-            },2000)
+              console.log(user[0].user);
+            }, 2000);
 
             const userPermData = res.data;
             observer.next(userPermData);
@@ -31,16 +31,16 @@ export class UserPermission{
             // }
           });
         return {
-          unsubscribe() {
-            //only need for asynchronous function like(testInterval)
-            //do nothing for synchronous object like(userPermData)
-            clearInterval(testInterval)
+          unsubscribe(): any {
+            // only need for asynchronous function like(testInterval)
+            // do nothing for synchronous object like(userPermData)
+            clearInterval(testInterval);
             count++;
           }
-        }
-      })
+        };
+      });
     return userPerm;
-    };
+    }
   }
   // private  setUserPermission(): void{
   //   this.userPermService.getUser().then(res => {
