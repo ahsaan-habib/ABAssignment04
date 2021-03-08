@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {DistrictInfo} from '../shared/interfaces';
 import {DistrictService} from '../common/services';
 import {DialogService} from "../common/services/dialog.service";
-import {Observable} from "rxjs";
 import {UserPermission} from "../common/services/user-permission";
+import {Observable, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-district',
   templateUrl: './district.component.html',
   styleUrls: ['./district.component.css']
 })
-export class DistrictComponent implements OnInit {
+export class DistrictComponent implements OnInit, OnDestroy {
 
   public districtInfo: DistrictInfo[] = [];
   public deleteDistrictInfo : DistrictInfo[] = [];
@@ -24,6 +24,7 @@ export class DistrictComponent implements OnInit {
     this.setDistrictList();
 
   }
+
   private  setDistrictList(): void{
     this.districtService.getStudentList().then(res => {
       if (res.serviceResult && res.serviceResult.success){
@@ -36,24 +37,26 @@ export class DistrictComponent implements OnInit {
     });
   }
   private getUserPerm() {
-    this.userPermService.setUserPermission().subscribe(user => {
-      if(user[0].user === 'admin'){
-        this.userAction = true;
-      }
-      else{
-        this.userAction = false;
-      }
-      // this.userPerm = user;
-      console.log(user[0].user);
-    });
-  }
+      return this.userPermService.setUserPermission().subscribe(user => {
+        this.userAction = user[0].user === 'admin';
+        console.log(user[0].user, 'confirm')
+      });
+    };
+  private userPermSubscription!: Subscription;
+
 
   ngOnInit(): void {
-    this.getUserPerm();
+    this.userPermSubscription = this.getUserPerm();
   }
 
-  // get rectified districts
 
+  ngOnDestroy(): void {
+    this.userPermSubscription.unsubscribe();
+    console.log('destroyed');
+  }
+
+
+  // get rectified districts
   private getRectifiedDistrict(districtList: DistrictInfo[]): DistrictInfo[]{
     for (const dist of districtList){
       dist.density = Math.floor(dist.population / dist.areaSqKm);

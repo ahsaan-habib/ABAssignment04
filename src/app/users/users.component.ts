@@ -42,7 +42,7 @@ export class UsersComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getUserPerm();
+    // this.getUserPerm();
   }
 
 }

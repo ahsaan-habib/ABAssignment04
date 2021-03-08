@@ -1,7 +1,4 @@
 import { Injectable } from '@angular/core';
-import {HttpService} from './http.service';
-import {UsersPerm, UsersPermRes} from 'src/app/shared/interfaces';
-import { environment } from 'src/environments/environment';
 import {Observable} from "rxjs";
 import {UsersService} from "./users.service";
 
@@ -12,21 +9,35 @@ export class UserPermission{
   }
 
   public setUserPermission(): Observable<any> {
-
+    let count = 0;
     const userPerm = new Observable(observer=>{
+        let testInterval: any;
 
         this.userService.getUser().then(res => {
           if (res.serviceResult && res.serviceResult.success) {
             const user = res.data;
-            // @ts-ignore
-            console.log(user[0].user)
+
+             testInterval = setInterval(()=>{
+              // @ts-ignore
+              console.log(user[0].user)
+            },2000)
+
             const userPermData = res.data;
-            return observer.next(userPermData)
+            observer.next(userPermData);
+            console.log(userPermData, count);
           }
             // else {
             //   console.log('Error', res);
             // }
           });
+        return {
+          unsubscribe() {
+            //only need for asynchronous function like(testInterval)
+            //do nothing for synchronous object like(userPermData)
+            clearInterval(testInterval)
+            count++;
+          }
+        }
       })
     return userPerm;
     };
