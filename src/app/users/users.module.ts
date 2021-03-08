@@ -6,6 +6,7 @@ import { UsersComponent } from './users.component';
 import {DistrictService, HttpService, StudentService, TeacherService, UrlService} from "../common/services";
 import {DialogService} from "../common/services/dialog.service";
 import {UsersService} from "../common/services/users.service";
+import {UserPermission} from "../common/services/user-permission";
 
 
 @NgModule({
@@ -16,7 +17,7 @@ import {UsersService} from "../common/services/users.service";
     CommonModule,
     UsersRoutingModule
   ],
-  providers: [UsersService],
+  providers: [UsersService,UserPermission],
 })
 
 export class UsersModule{ }

@@ -5,6 +5,7 @@ import { DistrictRoutingModule } from './district-routing.module';
 import { DistrictComponent } from './district.component';
 import {SharedComponentModule} from "../shared-component.module";
 import { DAboutComponent } from './d-about/d-about.component';
+import {UsersModule} from "../users/users.module";
 // import {AboutComponent} from "../pages/about/about.component";
 // direct call of a component from routing is accessible but multiple module can't declare same component simultaneously
 
@@ -16,7 +17,8 @@ import { DAboutComponent } from './d-about/d-about.component';
   imports: [
     CommonModule,
     DistrictRoutingModule,
-    SharedComponentModule
+    SharedComponentModule,
+    UsersModule
   ]
 })
 export class DistrictModule { }

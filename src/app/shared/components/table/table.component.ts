@@ -11,6 +11,7 @@ export class TableComponent implements OnInit {
 
   @Input() data!: DistrictInfo[];
   @Input() showAction!: boolean;
+  @Input() deleteAction!: boolean;
   @Input() headerClass!: string;
   @Output() rowRemoved = new EventEmitter<number>();
   @Output() rowRestore = new EventEmitter<number>();

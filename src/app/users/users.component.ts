@@ -1,6 +1,7 @@
 import {Component, OnInit } from '@angular/core';
 import {UsersPerm} from "../shared/interfaces";
 import {UsersService} from "../common/services/users.service";
+import {UserPermission} from "../common/services/user-permission";
 
 @Component({
   selector: 'app-users',
@@ -10,31 +11,38 @@ import {UsersService} from "../common/services/users.service";
 
 export class UsersComponent implements OnInit {
 
-  constructor(private userPermService: UsersService) {
-    this.setUserPermission();
+  constructor(private userPermService: UsersService, private userPermission: UserPermission) {
+    // this.setUserPermission();
   }
 
 
-  public userPerm!: UsersPerm;
+  public userPerm!: UsersPerm[];
   public numberOfDeletedDistrict = 0;
 
-
-  private  setUserPermission(): void{
-    this.userPermService.getUser().then(res => {
-      if (res.serviceResult && res.serviceResult.success){
-        this.userPerm = res.data;
-        const user = res.data;
-        // @ts-ignore
-        console.log(user[0].user)
-      }
-      else {
-        console.log('Error', res);
-      }
+  getUserPerm() {
+    this.userPermission.setUserPermission().subscribe(user => {
+      this.userPerm = user;
+      console.log(user);
     });
   }
 
+  // private  setUserPermission(): void{
+  //   this.userPermService.getUser().then(res => {
+  //     if (res.serviceResult && res.serviceResult.success){
+  //       this.userPerm = res.data;
+  //       const user = res.data;
+  //       // @ts-ignore
+  //       console.log(user[0].user)
+  //     }
+  //     else {
+  //       console.log('Error', res);
+  //     }
+  //   });
+  // }
+
 
   ngOnInit(): void {
+    this.getUserPerm();
   }
 
 }

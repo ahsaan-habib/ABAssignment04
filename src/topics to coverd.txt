@@ -4,3 +4,28 @@ In this class we will learn the following in details
 3. Template Reference Variable
 4. Lazy loading
 5. Creation and using subscription (Rxjs).
+
+
+observable subscribe-
+
+  step1:
+    created a method in service, suppose in BookService, to fetch  data over HTTP
+    -getBooksFromStore(): Observable<Book[]>{
+      return this.http.get<Book[]>(this.bookUrl);
+    }
+    above method will return Observable<Book[]>
+
+  step2:
+    create a component property as following
+      -softBooks: Book[]
+    Now in component we will subscribe  to the Observable Result of getBooksFromStore() as following
+      -getsoftBooks() {
+        this.bookService.getBookFromStore().subscribe(books => this.softBooks = books);
+      }
+    for the demo we are calling the above method  in ngOnInit.
+    nOnInit(){
+      this.getsoftBooks();
+    }
+
+  step3:
+    show softBooks in html template

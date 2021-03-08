@@ -3,6 +3,7 @@ import {DistrictInfo} from '../shared/interfaces';
 import {DistrictService} from '../common/services';
 import {DialogService} from "../common/services/dialog.service";
 import {Observable} from "rxjs";
+import {UserPermission} from "../common/services/user-permission";
 
 @Component({
   selector: 'app-district',
@@ -16,15 +17,16 @@ export class DistrictComponent implements OnInit {
   public numberOfDistrict = 0;
   public numberOfDeletedDistrict = 0;
   public userAction!: boolean;
-  public userPermission!: Observable<any> ;
 
-  constructor(private districtService: DistrictService, private dialogService: DialogService) {
+  constructor(private districtService: DistrictService,
+              private dialogService: DialogService,
+              private userPermService: UserPermission) {
     this.setDistrictList();
 
   }
   private  setDistrictList(): void{
     this.districtService.getStudentList().then(res => {
-      if (res.serviceResult && res.serviceResult.success === true){
+      if (res.serviceResult && res.serviceResult.success){
         this.districtInfo = this.getRectifiedDistrict(res.data);
         this.setNumberOfDistrict(this.districtInfo);
       }
@@ -33,12 +35,21 @@ export class DistrictComponent implements OnInit {
       }
     });
   }
+  private getUserPerm() {
+    this.userPermService.setUserPermission().subscribe(user => {
+      if(user[0].user === 'admin'){
+        this.userAction = true;
+      }
+      else{
+        this.userAction = false;
+      }
+      // this.userPerm = user;
+      console.log(user[0].user);
+    });
+  }
 
   ngOnInit(): void {
-    this.userPermission = new Observable(observer => {
-      
-    })
-
+    this.getUserPerm();
   }
 
   // get rectified districts

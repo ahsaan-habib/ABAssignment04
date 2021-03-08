@@ -6,7 +6,8 @@
     <app-table
       [data]="districtInfo"
       (rowRemoved)="reCount($event)"
-      [showAction]="true"
+      [showAction]="userAction"
+      [deleteAction]="true"
       [headerClass]="'bg-success text-white'"
     ></app-table>
   </div>
@@ -20,7 +21,8 @@
       <app-table
         [data]="deleteDistrictInfo"
         (rowRestore)="restoreFunc($event)"
-        [showAction]="false"
+        [showAction]="userAction"
+        [deleteAction]="false"
         [headerClass]="'bg-danger text-white'"
       ></app-table>
     </div>

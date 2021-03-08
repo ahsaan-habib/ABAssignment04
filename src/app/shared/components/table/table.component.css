@@ -1,9 +1,9 @@
-.tdDelete,.tdRestore{
+.action-btn{
   cursor: pointer;
 }
-.tdDelete:hover{
+.action-btn:hover i.text-danger{
   color: red !important;
 }
-.tdRestore:hover{
+.action-btn:hover i.text-success{
   color: limegreen !important;
 }
