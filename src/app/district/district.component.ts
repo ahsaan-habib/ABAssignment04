@@ -1,20 +1,23 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ChangeDetectorRef} from '@angular/core';
 import {DistrictInfo} from '../shared/interfaces';
 import {DistrictService} from '../common/services';
 import {DialogService} from '../common/services/dialog.service';
 import {UserPermission} from '../common/services';
-import {Subscription} from 'rxjs';
+import {BehaviorSubject, Subject, Subscription} from 'rxjs';
+import { TableComponent } from '../shared/components/table/table.component';
+
 
 @Component({
   selector: 'app-district',
   templateUrl: './district.component.html',
   styleUrls: ['./district.component.css']
 })
-export class DistrictComponent implements OnInit, OnDestroy {
+export class DistrictComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(private districtService: DistrictService,
               private dialogService: DialogService,
-              private userPermService: UserPermission) {
+              private userPermService: UserPermission,
+              private cdr: ChangeDetectorRef) {
     this.setDistrictList();
 
   }
@@ -26,6 +29,13 @@ export class DistrictComponent implements OnInit, OnDestroy {
   public numberOfDeletedDistrict = 0;
   public userAction!: boolean;
   private userPermSubscription!: Subscription;
+
+  
+  @ViewChild(TableComponent) childTable: any;
+
+  //  Can't resolve ExpressionChangedAfterItHasBeenCheckedError
+  // public setMessage :Subject<string> = new BehaviorSubject('');
+  public setMessage : any;
 
   private  setDistrictList(): void{
     this.districtService.getStudentList().then(res => {
@@ -47,6 +57,14 @@ export class DistrictComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.userPermSubscription = this.getUserPerm();
+  }
+
+  ngAfterViewInit(): void {
+    //  Can't resolve ExpressionChangedAfterItHasBeenCheckedError
+    // this.setMessage.next(this.childTable.tableMessage);
+    this.setMessage = `${this.childTable.tableMessage} and Notice console to see subscription of setUserPermission`;
+    this.cdr.detectChanges();
+
   }
 
 

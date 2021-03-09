@@ -19,6 +19,9 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  public tableMessage = 'This message is from table component accessable via @ViewChild';
+
   public deleteRow(index: number): void{
     // this.data.splice(index, 1);
     this.rowRemoved.emit(index);
